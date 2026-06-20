@@ -222,6 +222,7 @@ The blocked package name can differ between installs. The reliable, one-time fix
 ```bash
 npm config set allowScripts true
 npm install
+npm approve-scripts electron
 ```
 
 See [Troubleshooting](#troubleshooting) below for alternatives if this doesn't resolve it.
