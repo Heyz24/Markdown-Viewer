@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog, Menu } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, Menu, shell } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
@@ -86,6 +86,24 @@ function createWindow() {
   });
 
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
+
+  // Markdown links (http/https) must open in the user's real browser, not
+  // navigate the app's own window. Two cases to cover:
+  // 1. <a target="_blank"> or window.open() -> setWindowOpenHandler
+  // 2. A plain click that tries to navigate this window away from index.html -> will-navigate
+  const isOwnAppUrl = (url) => url.startsWith('file://') && url.includes('index.html');
+
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    if (!isOwnAppUrl(url)) shell.openExternal(url);
+    return { action: 'deny' };
+  });
+
+  mainWindow.webContents.on('will-navigate', (event, url) => {
+    if (!isOwnAppUrl(url)) {
+      event.preventDefault();
+      shell.openExternal(url);
+    }
+  });
 
   mainWindow.webContents.once('did-finish-load', () => {
     if (fileToOpen) loadFileIntoWindow(fileToOpen);
