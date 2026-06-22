@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MDViewer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="toolbar">
+    <button id="btnOpen" title="Open (Ctrl+O)">Open</button>
+    <button id="btnSave" title="Save (Ctrl+S)">Save</button>
+    <span class="sep"></span>
+    <button id="btnTogglePreview" title="Toggle preview">Preview: Split</button>
+    <span class="sep"></span>
+    <button id="btnInsertImage" title="Insert image">Insert Image</button>
+    <span class="sep"></span>
+    <div class="dropdown">
+      <button id="btnExport">Export ▾</button>
+      <div id="exportMenu" class="dropdown-menu hidden">
+        <button data-fmt="html">HTML</button>
+        <button data-fmt="pdf">PDF</button>
+        <button data-fmt="docx">Word (.docx)</button>
+        <button data-fmt="txt">Plain Text</button>
+      </div>
+    </div>
+    <span id="filename">Untitled.md</span>
+  </div>
+
+  <div id="container">
+    <textarea id="editor" placeholder="# Start typing markdown..."></textarea>
+    <div id="preview" class="markdown-body"></div>
+  </div>
+
+  <script src="marked.min.js"></script>
+  <script src="highlight.js"></script>
+  <script src="emoji.js"></script>
+  <script src="mermaid.min.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>

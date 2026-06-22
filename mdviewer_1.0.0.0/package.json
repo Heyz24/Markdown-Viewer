@@ -1,0 +1,75 @@
+{
+  "name": "mdviewer",
+  "version": "1.0.0",
+  "description": "Lightweight local Markdown viewer/editor",
+  "author": "MDViewer",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.local.mdviewer",
+    "productName": "MDViewer",
+    "directories": {
+      "output": "bin"
+    },
+    "files": [
+      "src/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "msi",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "fileAssociations": [
+        {
+          "ext": "md",
+          "name": "Markdown",
+          "description": "Markdown File",
+          "role": "Editor"
+        },
+        {
+          "ext": "markdown",
+          "name": "Markdown",
+          "description": "Markdown File",
+          "role": "Editor"
+        }
+      ]
+    },
+    "msi": {
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "MDViewer",
+      "oneClick": false,
+      "perMachine": false,
+      "upgradeCode": "9F1B7C2E-4A3D-4E5F-8B6A-1C2D3E4F5A6B"
+    },
+    "portable": {
+      "artifactName": "MDViewer.exe"
+    },
+    "asar": true,
+    "compression": "maximum"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {},
+  "allowScripts": {
+    "electron@31.7.7": true
+  }
+}
