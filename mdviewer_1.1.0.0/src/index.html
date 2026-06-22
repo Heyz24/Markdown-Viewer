@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MDViewer</title>
+<link rel="stylesheet" href="codemirror/codemirror.css">
+<link rel="stylesheet" href="codemirror/addon/dialog/dialog.css">
+<link rel="stylesheet" href="katex/katex.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark">
+  <div id="toolbar">
+    <button id="btnToggleSidebar" title="Toggle file sidebar">☰</button>
+    <button id="btnOpenFolder" title="Open folder as project">Open Folder</button>
+    <button id="btnOpen" title="Open file (Ctrl+O)">Open File</button>
+    <button id="btnSave" title="Save (Ctrl+S)">Save</button>
+    <span class="sep"></span>
+    <button id="btnFind" title="Find & Replace (Ctrl+F)">Find</button>
+    <button id="btnTogglePreview" title="Toggle preview">Preview: Split</button>
+    <button id="btnOutline" title="Toggle outline panel">Outline</button>
+    <span class="sep"></span>
+    <button id="btnInsertImage" title="Insert image">Insert Image</button>
+    <span class="sep"></span>
+    <div class="dropdown">
+      <button id="btnExport">Export ▾</button>
+      <div id="exportMenu" class="dropdown-menu hidden">
+        <button data-fmt="html">HTML</button>
+        <button data-fmt="pdf">PDF (direct save)</button>
+        <button data-fmt="print">PDF / Print Preview…</button>
+        <button data-fmt="docx">Word (.docx)</button>
+        <button data-fmt="txt">Plain Text</button>
+      </div>
+    </div>
+    <button id="btnTheme" title="Toggle light/dark theme">🌙</button>
+    <span id="filename">Untitled.md</span>
+  </div>
+
+  <div id="body">
+    <div id="sidebar">
+      <div id="sidebarHeader">
+        <span id="sidebarRootName">No folder open</span>
+        <button id="btnNewFile" title="New file">+File</button>
+        <button id="btnNewFolder" title="New folder">+Folder</button>
+      </div>
+      <div id="fileTree"></div>
+    </div>
+
+    <div id="main">
+      <div id="tabBar"></div>
+
+      <div id="container">
+        <div id="editorHost"></div>
+        <div id="preview" class="markdown-body"></div>
+        <div id="outlinePanel" class="hidden">
+          <div class="panel-title">Outline</div>
+          <div id="outlineList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Context menu for file tree -->
+  <div id="contextMenu" class="dropdown-menu hidden">
+    <button data-action="rename">Rename</button>
+    <button data-action="delete">Delete</button>
+  </div>
+
+  <!-- Simple modal for naming new files/folders -->
+  <div id="modalOverlay" class="hidden">
+    <div id="modalBox">
+      <div id="modalTitle">New File</div>
+      <input id="modalInput" type="text" placeholder="name.md">
+      <div id="modalButtons">
+        <button id="modalCancel">Cancel</button>
+        <button id="modalOk">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="codemirror/codemirror.js"></script>
+  <script src="codemirror/mode/meta.js"></script>
+  <script src="codemirror/addon/mode/simple.js"></script>
+  <script src="codemirror/mode/xml/xml.js"></script>
+  <script src="codemirror/mode/markdown/markdown.js"></script>
+  <script src="codemirror/mode/javascript/javascript.js"></script>
+  <script src="codemirror/mode/python/python.js"></script>
+  <script src="codemirror/mode/css/css.js"></script>
+  <script src="codemirror/mode/htmlmixed/htmlmixed.js"></script>
+  <script src="codemirror/mode/clike/clike.js"></script>
+  <script src="codemirror/mode/shell/shell.js"></script>
+  <script src="codemirror/mode/yaml/yaml.js"></script>
+  <script src="codemirror/mode/sql/sql.js"></script>
+  <script src="codemirror/mode/php/php.js"></script>
+  <script src="codemirror/mode/ruby/ruby.js"></script>
+  <script src="codemirror/mode/go/go.js"></script>
+  <script src="codemirror/mode/rust/rust.js"></script>
+  <script src="codemirror/mode/dockerfile/dockerfile.js"></script>
+  <script src="codemirror/addon/dialog/dialog.js"></script>
+  <script src="codemirror/addon/search/searchcursor.js"></script>
+  <script src="codemirror/addon/search/search.js"></script>
+  <script src="codemirror/addon/search/jump-to-line.js"></script>
+  <script src="codemirror/addon/edit/continuelist.js"></script>
+  <script src="codemirror/addon/selection/active-line.js"></script>
+
+  <script src="marked.min.js"></script>
+  <script src="marked-footnote.min.js"></script>
+  <script src="highlight.js"></script>
+  <script src="emoji.js"></script>
+  <script src="katex/katex.min.js"></script>
+  <script src="katex/auto-render.min.js"></script>
+  <script src="mermaid.min.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>
